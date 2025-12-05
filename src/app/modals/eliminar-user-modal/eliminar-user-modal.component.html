@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="icon-close">
+      <button class="btn" (click)="cerrar_modal()">
+          <i class="bi bi-x-lg"></i>
+      </button>
+  </div>
+  <div class="body-modal">
+      <!-- Título Dinámico -->
+      <h1 class="title-modal" *ngIf="tipo === 'delete'">Eliminar {{rol}}</h1>
+      <h1 class="title-modal" *ngIf="tipo === 'update'">Editar {{rol}}</h1>
+
+      <!-- Descripción Dinámica -->
+      <span class="descripcion" *ngIf="tipo === 'delete'">
+          Estás a punto de eliminar este {{rol}}. Una vez que lo elimines no podrás deshacer esta acción.
+      </span>
+      <span class="descripcion" *ngIf="tipo === 'update'">
+          Estás a punto de editar la información de este {{rol}}. ¿Deseas continuar con la edición?
+      </span>
+
+      <div class="buttons-modal">
+          <button mat-button class="btn-regresar" (click)="cerrar_modal()">
+              Cancelar
+          </button>
+
+          <!-- Botón de acción -->
+          <button mat-button class="btn-eliminar" (click)="confirmar()">
+              {{ tipo === 'delete' ? 'Eliminar' : 'Aceptar' }}
+          </button>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="wrapper main-content">
+  <div class="reg-shell">
+
+    <!-- Header simple sin radio buttons -->
+    <div class="row mb-4 header-row">
+      <div class="col-12 d-flex align-items-center justify-content-between">
+        <h2 class="page-title mb-0">
+          {{ editar ? 'Editar' : 'Registrar' }}
+          <span class="text-highlight">{{ rol | titlecase }}</span>
+        </h2>
+        <button mat-icon-button class="back-btn" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+      <hr class="mt-2">
+    </div>
+
+    <!-- Area de Formularios -->
+    <div class="forms-area">
+      <!-- Reutilizamos los partials existentes pero inyectados en este nuevo contexto -->
+      <app-registro-admin *ngIf="isAdmin" [rol]="'administrador'" [datos_user]="user"></app-registro-admin>
+
+      <app-registro-alumnos *ngIf="isAlumno" [rol]="'alumno'" [datos_user]="editar ? user : null"></app-registro-alumnos>
+
+      <app-registro-maestros *ngIf="isMaestro" [rol]="'maestro'" [datos_user]="editar ? user : null"></app-registro-maestros>
+
+      <!-- Nuevo Componente de Materia -->
+      <app-registro-materias *ngIf="isMateria" [datos_materia]="editar ? user : null" [editar]="editar"></app-registro-materias>
+    </div>
+
+  </div>
+</div>

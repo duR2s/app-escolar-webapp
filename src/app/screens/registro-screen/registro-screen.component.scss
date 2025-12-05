@@ -1,0 +1,147 @@
+/* =========================================================
+   dashboard-registro-screen.component.scss
+   ========================================================= */
+
+/* 1. LAYOUT PRINCIPAL & SIDEBAR
+   Esta es la clave para que no se encime con el menú lateral.
+   Aplicamos el margen de 220px en desktop.
+*/
+.wrapper {
+  height: auto;
+  min-height: 100vh;
+  /* Fondo suave para distinguir del blanco de las cards */
+  background-color: #f4f7fb;
+
+  /* Lógica del Sidebar Desktop */
+  margin-left: 220px;
+  transition: margin-left 0.3s;
+
+  padding: 2rem; /* Espaciado interno general */
+}
+
+/* Ajuste para Mobile/Tablet (< 991px) */
+@media (max-width: 991px) {
+  .wrapper {
+    margin-left: 0 !important; /* El sidebar se vuelve overlay */
+    padding: 1rem;
+  }
+}
+
+/* =========================================================
+   2. CONTENEDOR DEL FORMULARIO (SHELL)
+   Centra el contenido y le da un ancho máximo razonable
+   para que el formulario no se estire infinitamente en monitores grandes.
+   ========================================================= */
+.reg-shell {
+  width: 100%;
+  max-width: 1100px; /* Ancho máximo similar al de tus tablas */
+  margin: 0 auto;    /* Centrado horizontal */
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   3. ENCABEZADO (HEADER ROW)
+   Replica el estilo de tus títulos 'Bienvenido...' y alertas
+   ========================================================= */
+.header-row {
+  margin-bottom: 2rem;
+
+  hr {
+    border-top: 2px solid #e0e0e0;
+    opacity: 0.5;
+  }
+}
+
+/* Título Principal (e.g. "Registrar Maestro") */
+.page-title {
+  font-family: 'Nexa-Bold', sans-serif;
+  color: #231F20;
+  margin: 0;
+  /* Tipografía fluida (Clamp) igual a tu admin-screen */
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Texto resaltado para el ROL (e.g. "Maestro") */
+.text-highlight {
+  color: #0092B8; /* Azul institucional BUAP usado en tus iconos de editar */
+  font-family: 'Nexa-Bold', sans-serif;
+}
+
+/* =========================================================
+   4. BOTÓN DE REGRESAR
+   Estilo consistente con Material Design y tus otros botones
+   ========================================================= */
+.back-btn {
+  color: #555;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #000;
+    transform: translateX(-3px); /* Efecto sutil de movimiento */
+  }
+
+  mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* =========================================================
+   5. ÁREA DE FORMULARIOS (Container de los Partials)
+   Aquí es donde se renderizan <app-registro-maestros>, etc.
+   ========================================================= */
+.forms-area {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07); /* Misma sombra que tus tablas */
+  padding: 2rem;
+  width: 100%;
+
+  /* Animación suave al cargar */
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   6. RESPONSIVIDAD FINA (Queries específicas de tu proyecto)
+   ========================================================= */
+
+/* Mobile (Teléfonos) */
+@media (max-width: 575px) {
+  .page-title {
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.5rem);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .text-highlight {
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  .forms-area {
+    padding: 1rem; /* Menos padding en móviles */
+  }
+
+  .header-row {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Tablet Vertical */
+@media (min-width: 576px) and (max-width: 768px) {
+  .wrapper {
+    padding: 1.5rem;
+  }
+}
